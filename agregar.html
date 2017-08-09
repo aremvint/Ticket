@@ -14,28 +14,32 @@
 
  <form action="/facturas" method="post">
     <P>
-      <LABEL for="num">Numero de factura: </LABEL>
-                <INPUT type="n" id="num" name="num"><BR>
-      <LABEL for="company" max-length="16">Nombre de la Empresa: </LABEL>
-                <INPUT type="text" id="company" name="company"><BR>
-      <LABEL for="time">Fecha: </LABEL>
-                <INPUT type="date" id="fecha" name="time"><BR>
-      <LABEL for="service">Tipo de servicios: </LABEL>
-     <select name="service">
-       <option>Agua Potable</option>
-       <option>Luz Eléctrica</option>
-       <option>Teléfono</option>
-     </select>
-     </br>
-      <LABEL for="debt">Cantidad Facturada: </LABEL>
-                <INPUT type="text" id="debt" num="debt"><BR>
-      <LABEL for="state">Estado: </LABEL>
-     <select name="state">
-       <option>Pagado</option>
-       <option>Pendiente</option>
-       <option>Acumulado</option>
+      <LABEL for="fecha">Fecha de emisión: </LABEL>
+                <INPUT type="date" id="fecha" name="fecha"><BR>
+      <LABEL for="origen">Origen: </LABEL>
+     <select name="origen">
+       <option>Guayaquil</option>
+       <option>Quito</option>
+       <option>Cuenca</option>
+       <option>Ambato</option>
+       <option>Portoviejo</option>
      </select>
      <br /><br />
+     <LABEL for="destino">Destino: </LABEL>
+     <select name="destino">
+       <option>Guayaquil</option>
+       <option>Quito</option>
+       <option>Cuenca</option>
+       <option>Ambato</option>
+       <option>Portoviejo</option>
+       <br /><br />
+    <LABEL for="precio">Precio: </LABEL>
+                <INPUT type="n" id="precio" name="precio"><BR>
+    <LABEL for="cedula">Adquiriente: </LABEL>
+                <INPUT type="n" id="cedula" name="cedula"><BR>
+    <LABEL for="puesto">Puesto: </LABEL>
+                <INPUT type="text" id="precio" name="puesto"><BR>
+      
      <input type="submit" name="" value="GUARDAR"/>
     </p>
   </form>

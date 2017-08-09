@@ -16,8 +16,11 @@ app.use(methodOverride());
 //var models = require('./models/facturas')(app,mongoose);
 //var FacturaCtrl = require('./controllers/facturas');
 
-var models = require('./models/recibos')(app,mongoose);
-var RecibosCtrl = require('./controllers/recibos');
+/*var models = require('./models/recibos')(app,mongoose);
+var RecibosCtrl = require('./controllers/recibos');*/
+
+var models = require('./models/tickets')(app,mongoose);
+var TicketCtrl = require('./controllers/tickets');
 
 
 //Exmaple Route
@@ -31,6 +34,9 @@ router.get('/', function(req, res) {
 var facturas = express.Router();
 
 var recibos = express.Router();
+
+var tickets = express.Router();
+
 /*
 facturas.get('/',(req,res) => {
   res.sendFile(__dirname + '/index.html')
@@ -54,10 +60,61 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ROUTES TICKETS
+
+tickets.get('/',TicketCtrl.findAllTickets);
+
+
+tickets.get('/nueva-ticket', TicketCtrl.create);
+
+
+
+tickets.get('/edit-ticket/:id',TicketCtrl.showEditTicket);
+
+
+
+tickets.route('/')  
+
+  .get(TicketCtrl.findAllTicket);
+
+
+
+tickets.route('/ticket/:id')  
+
+  .get(TicketCtrl.findAllTicket)
+
+  .post(TicketCtrl.updateTicket);
+
+
+
+tickets.route('/tickets')  
+
+  .get(TicketCtrl.findAllTickets)
+
+  .post(TicketCtrl.addTicket);
+
+
+
+tickets.route('/recibos/:id')  
+
+  .get(TicketCtrl.findById)
+
+  .put(TicketCtrl.updateTicket)
+
+  .delete(TicketCtrl.deleteTicket);
+
+
+
+app.use('/api', tickets);
+
+
+
+app.use(tickets);
+
 
 //Routes Recibos
 
-recibos.get('/',ReciboCtrl.findAllRecibos);
+/*recibos.get('/',ReciboCtrl.findAllRecibos);
 
 recibos.get('/nueva-recibo', ReciboCtrl.create);
 
@@ -82,7 +139,7 @@ recibos.route('/recibos/:id')
 app.use('/api', recibos);
 
 
-app.use(recibos);
+app.use(recibos);*/
 
 
 
