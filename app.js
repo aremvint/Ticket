@@ -173,7 +173,7 @@ app.use('/api', facturas);
 app.use(facturas);
 */
 
-mongoose.connect('mongodb://localhost/facturas', function(error, respuesta) {
+mongoose.connect('mongodb://localhost/tickets', function(error, respuesta) {
 	if (error) {
 		console.log('ERROR: connecting to Database ' +  error);
 	}
