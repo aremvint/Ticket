@@ -1,12 +1,12 @@
 var mongoose = require('mongoose'),  
     Schema   = mongoose.Schema;
 
-var facturaSchema = new Schema({  
+var ticketSchema = new Schema({  
   fecha:    { type: String },
-  origen:     { type: String enum:
+  origen:     { type: String, enum:
   ['Guayaquil', 'Quito', 'Cuenca', 'Ambato', 'Portoviejo' ] 
 		},
-  destino:     { type: String enum:
+  destino:     { type: String, enum:
   ['Guayaquil', 'Quito', 'Cuenca', 'Ambato', 'Portoviejo' ] 
 		},
 		

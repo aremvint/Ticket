@@ -1,10 +1,10 @@
 //File: controllers/facturas.js
 var mongoose = require('mongoose');  
-var Factura  = mongoose.model('Factura');
+var Ticket  = mongoose.model('Ticket');
 
 //GET - Return all facturas in the DB
 exports.findAllTickets = function(req, res) {  
-    Factura.find(function(err, ticket) {
+    Ticket.find(function(err, ticket) {
         if(err) res.send(500, err.message);
         else {
             return res.render('../views/tickets/index', {title: 'Lista de Tickets', ticket: ticket});
@@ -16,7 +16,7 @@ exports.findAllTickets = function(req, res) {
 
 //GET - Return a Facturas with specified ID
 exports.findById = function(req, res) {  
-    Factura.findById(req.params.id, function(err, factura) {
+    Ticket.findById(req.params.id, function(err, ticket) {
     if(err) return res.send(500, err.message);
 
     console.log('GET /ticket/' + req.params.id);
@@ -81,7 +81,7 @@ exports.updateTicket = function(req, res, next) {
 exports.deleteTicket = function(req, res) {  
     Ticket.findById(req.params.id, function(err, ticket) {
         ticket.remove(function(err) {
-            if(err) res.render('../views/facturas/index', {title: 'Lista de Facturas', ticket: ticket});
+            if(err) res.render('../views/facturas/index', {title: 'Lista de Tickets', ticket: ticket});
             else res.redirect('/')
                 //res.status(200).send();
             
@@ -91,5 +91,5 @@ exports.deleteTicket = function(req, res) {
 
 exports.create = function (req, res, next) {
     
-  return res.render('../views/facturas/show', {title: 'Nueva Factura', act: '/facturas', factura: {}})
+  return res.render('../views/facturas/show', {title: 'Nueva Ticket', act: '/tickets', ticket: {}})
 }

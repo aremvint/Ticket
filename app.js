@@ -31,9 +31,9 @@ router.get('/', function(req, res) {
 
 
 // API routes
-var facturas = express.Router();
+//var facturas = express.Router();
 
-var recibos = express.Router();
+//var recibos = express.Router();
 
 var tickets = express.Router();
 
@@ -79,7 +79,7 @@ tickets.route('/')
 
 
 
-tickets.route('/ticket/:id')  
+tickets.route('/tickets/:id')  
 
   .get(TicketCtrl.findAllTicket)
 
@@ -95,7 +95,7 @@ tickets.route('/tickets')
 
 
 
-tickets.route('/recibos/:id')  
+tickets.route('/tickets/:id')  
 
   .get(TicketCtrl.findById)
 
