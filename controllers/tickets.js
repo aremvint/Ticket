@@ -41,8 +41,8 @@ exports.addTicket = function(req, res, next) {
 
     factura.save(function(err, ticket) {
         if(err) return res.status(500).send( err.message);
-        res.redirect('/');
-        res.status(200).jsonp(ticket);
+        else res.redirect('/');
+        
     });
 };
 
@@ -51,7 +51,7 @@ exports.showEditTicket = function(req, res) {
     Ticket.findById(req.params.id, function(err, ticket) {
         
         if(err) return res.status(500).send(err.message);
-        else return res.render('../views/tickets/show', {title: 'Editar Tickets', act: '/ticket/'+req.params.id, ticket:ticket});
+        else return res.render('../views/tickets/show', {put: true, title: 'Editar Tickets', act: '/ticket/'+req.params.id, ticket:ticket});
         res.status(200).jsonp(ticket);
         
     });
@@ -68,10 +68,16 @@ exports.updateTicket = function(req, res, next) {
         puesto:    req.body.puesto;
         summary:  req.body.summary;
 
-        ticket.save(function(err) {
-            if(err) return res.status(500).send(err.message);
-            else res.render('../views/tickets/index', {title: 'Lista de Tickets', ticket: ticket});
-            res.status(200).jsonp(ticket);
+        ticket.update( {
+            fecha: fecha,
+	    origen: origen,
+            destino: destino,
+            precio: precio,
+            cedula: cedula,
+            puesto: puesto,
+        },function(err){
+		if(err) res.send("No se puede actualizar la informacion: " +err);
+		else res.redirect('/');    
 
         });
     });
@@ -79,17 +85,17 @@ exports.updateTicket = function(req, res, next) {
 
 //DELETE - Delete a Factura with specified ID
 exports.deleteTicket = function(req, res) {  
-    Ticket.findById(req.params.id, function(err, ticket) {
-        ticket.remove(function(err) {
-            if(err) res.render('../views/facturas/index', {title: 'Lista de Tickets', ticket: ticket});
+    Ticket.remove({_id: req.params.id}, function(err) {
+
+            if(err) res.send("Error al borrar un ticket.");
             else res.redirect('/')
                 //res.status(200).send();
             
-        })
+       
     });
 };
 
-exports.create = function (req, res, next) {
+exports.create = function (req, res) {
     
-  return res.render('../views/facturas/show', {title: 'Nueva Ticket', act: '/tickets', ticket: {}})
+  return res.render('../views/facturas/show', {put: false, title: 'Nueva Ticket', act: '/tickets', ticket: {}})
 }

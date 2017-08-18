@@ -13,9 +13,6 @@ app.use(methodOverride());
 
 
 //Import Models and Controllers
-//var models = require('./models/tickets')(app,mongoose);
-//var TicketCtrl = require('./controllers/tickets');
-
 var models = require('./models/tickets')(app,mongoose);
 var TicketCtrl = require('./controllers/tickets');
 
@@ -29,7 +26,7 @@ router.get('/', function(req, res) {
 
 // API routes
 var tickets = express.Router();
-
+//VISTAS
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,9 +39,17 @@ tickets.get('/',TicketCtrl.findAllTickets);
 
 tickets.get('/nuevo-ticket', TicketCtrl.create);
 
+tickets.post('/tickets', TicketCtrl.addTicket);
+
 tickets.get('/edit-ticket/:id',TicketCtrl.showEditTicket);
 
-tickets.route('/')  
+tickets.post('/edit-ticket/:id/edit',TicketCtrl.updateTicket);
+
+tickets.post('/edit-ticket/:id',TicketCtrl.deleteTicket);
+
+
+//utilizar luego
+/*tickets.route('/')  
   .get(TicketCtrl.findAllTickets);
 
 tickets.route('/ticket/:id')  
@@ -58,8 +63,9 @@ tickets.route('/tickets')
 tickets.route('/tickets/:id')  
   .get(TicketCtrl.findById)
   .put(TicketCtrl.updateTicket)
-  .delete(TicketCtrl.deleteTicket);
+  .delete(TicketCtrl.deleteTicket);*/
 
+//RUTA GENERAL
 app.use('/api', tickets);
 app.use(tickets);
 

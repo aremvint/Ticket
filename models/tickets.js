@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var ticketSchema = new Schema({  
-  fecha:    { type: String },
+  fecha:    { type: Date },
   origen:     { type: String, enum:
   ['Guayaquil', 'Quito', 'Cuenca', 'Ambato', 'Portoviejo' ] 
 		},
